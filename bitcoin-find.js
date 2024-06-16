@@ -21,14 +21,15 @@ async function encontrarBitcoins(key, min, max, shouldStop) {
 
             if (Date.now() - startTime > segundos) {
                 segundos += 1000;
-                console.log(segundos / 1000);
                 if (segundos % 10000 === 0) {
                     const tempo = (Date.now() - startTime) / 1000;
                     console.clear();
                     console.log('Resumo: ');
-                    console.log('Velocidade:', (Number(key) - Number(min)) / tempo, ' chaves por segundo');
+                    console.log('Tempo :', tempo.toLocaleString('pt-BR'), ' segundos');
+                    console.log('Velocidade:', (Number(key - min) / tempo).toLocaleString('pt-BR'), ' chaves por segundo');
                     console.log('Chaves buscadas: ', (key - min).toLocaleString('pt-BR'));
                     console.log('Ultima chave tentada: ', pkey);
+                    console.log('Buscando Bitcoins...');
 
                     const filePath = 'Ultima_chave.txt';
                     const content = `Ultima chave tentada: ${pkey}`;
